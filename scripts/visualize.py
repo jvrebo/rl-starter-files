@@ -66,6 +66,7 @@ env.render('human')
 
 for episode in range(args.episodes):
     obs = env.reset()
+    # cum_reward = 0
 
     while True:
         env.render('human')
@@ -74,6 +75,10 @@ for episode in range(args.episodes):
 
         action = agent.get_action(obs)
         obs, reward, done, _ = env.step(action)
+        # Show cumulative reward 
+        # cum_reward += reward
+        # env.window.set_caption('%.2f' % cum_reward)
+        
         agent.analyze_feedback(reward, done)
 
         if done or env.window.closed:

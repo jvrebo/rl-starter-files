@@ -99,6 +99,7 @@ txt_logger.info(f"Device: {device}\n")
 envs = []
 for i in range(args.procs):
     envs.append(utils.make_env(args.env, args.seed + 10000 * i))
+    #envs.append(utils.make_env(args.env))
 txt_logger.info("Environments loaded\n")
 
 # Load training status
@@ -114,7 +115,7 @@ txt_logger.info("Training status loaded\n")
 obs_space, preprocess_obss = utils.get_obss_preprocessor(envs[0].observation_space)
 if "vocab" in status:
     preprocess_obss.vocab.load_vocab(status["vocab"])
-txt_logger.info("Observations preprocessor loaded")
+txt_logger.info("Observations preprocessor loaded\n")
 
 # Load model
 
@@ -123,7 +124,7 @@ if "model_state" in status:
     acmodel.load_state_dict(status["model_state"])
 acmodel.to(device)
 txt_logger.info("Model loaded\n")
-txt_logger.info("{}\n".format(acmodel))
+# txt_logger.info("{}\n".format(acmodel))
 
 # Load algo
 
